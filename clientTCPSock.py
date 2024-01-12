@@ -1,4 +1,8 @@
 import socket
+import time
+
+StartTime= time.time()
+
 s = socket.socket()
 
 s.connect(("localhost", 50000))
@@ -15,3 +19,4 @@ print(s.recv(1024))
 s.shutdown(2)
 s.close()
 
+print("Running Time: " , time.time() - StartTime)
