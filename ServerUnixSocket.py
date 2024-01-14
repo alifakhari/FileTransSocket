@@ -10,7 +10,7 @@ try:
 except OSError:
     if os.path.exists(socket_path):
         raise
-
+     
 # Create the Unix socket server
 server = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 
@@ -30,15 +30,17 @@ try:
     # receive data from the client
     while True:
         data = connection.recv(1024)
-        if not data:
+        if data.endswith(b"DONE"):
             break
-        print('Received data:', data.decode())
+        #print('Received data:', data.decode())
 
         # Send a response back to the client
-        response = 'Hello from the server!'
-        connection.sendall(response.encode())
+        #response = 'Hello from the server!'
+        #connection.sendall(response.encode())
+        #print("Receiving Data ...")
 finally:
     # close the connection
     connection.close()
     # remove the socket file
     os.unlink(socket_path)
+    print("Donnnnnnnnnnnnnnnnnnnnnnnnnnne")

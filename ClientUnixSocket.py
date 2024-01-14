@@ -1,6 +1,9 @@
 import socket
 import os
+import time
 
+
+ttime = time.time()
 # Set the path for the Unix socket
 socket_path = '/tmp/my_socket'
 
@@ -17,13 +20,15 @@ client.sendall(message.encode())
 ###########
 filetosend = open("image.rar", "rb")
 data = filetosend.read(1024)
+i=0
 while data:
-    print("Sending...")
-    s.send(data)
+    #i +=1
+    #print(f"Sending... Chunk {i}")
+    client.send(data)
     data = filetosend.read(1024)
 filetosend.close()
-s.send(b"DONE")
-print("Done Sending.")
+client.send(b"DONE")
+print(f"Done Sending... in {time.time()-ttime}")
 #####
 
 

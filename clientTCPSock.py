@@ -5,11 +5,11 @@ StartTime= time.time()
 
 s = socket.socket()
 
-s.connect(("localhost", 5000))
+s.connect(("localhost", 8000))
 filetosend = open("image.rar", "rb")
 data = filetosend.read(1024)
 while data:
-    print("Sending...")
+    #print("Sending...")
     s.send(data)
     data = filetosend.read(1024)
 filetosend.close()
